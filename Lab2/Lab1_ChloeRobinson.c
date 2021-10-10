@@ -6,14 +6,14 @@
    ('\t' or ' ').*/
 bool delim_character(char c)
 {
-	return (c == '\t' || c == ' ');
+	return (c == '\t' || c == ' ' || c == '(' || c == 'X');
 }
 
 /* Return true if c is a non-whitespace
    character */
 bool non_delim_character(char c)
 {
-	return (c != '\t' && c != ' ');
+	return (c != '\t' && c != ' ' && c != '(' && c != 'X');
 }
 
 /* Returns a pointer to the first character of the next
@@ -44,11 +44,15 @@ int count_tokens(char* str)
 {
 	int counter = 0;
 	while(*str != '\0'){
-		if(delim_character(*str)){
+		if(*str == ' '){
+			counter++;
+		}
+		if(*str == '('){
 			counter++;
 		}
 		str++;
 	}
+	
 	return ++counter;
 }
 
@@ -102,7 +106,7 @@ void print_all_tokens(char** tokens, int limit)
   
 }
 
-
+/*
  int main()
  {
    //Input from user
@@ -125,9 +129,10 @@ void print_all_tokens(char** tokens, int limit)
   //fill the list of pointers with the pointers from each word
 	tokenizer = tokenize(tokenizer, start, endword, 0, tokens);
 
+
   //print all of the tokens, or words
 	print_all_tokens(tokenizer, tokens);
 
 	return 0;
 
-}
+}*/
